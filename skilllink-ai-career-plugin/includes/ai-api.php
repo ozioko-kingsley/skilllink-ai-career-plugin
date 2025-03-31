@@ -5,10 +5,18 @@ if (!defined('ABSPATH')) {
 }
 
 function skilllink_ai_get_career_recommendation($user_input) {
+    // ✅ Try getting the API key from WordPress settings
     $api_key = get_option('skilllink_ai_api_key');
 
+    // ✅ If no API key is saved, use a hardcoded fallback (Optional)
     if (empty($api_key)) {
-        return "Error: API key not set. Please enter your API key in the plugin settings.";
+        $api_key = '';
+        // ✅ Save it so it persists in settings
+        update_option('skilllink_ai_api_key', $api_key);
+    }
+
+    if (empty($api_key)) {
+        return "Error: API key is missing. Please set it in the plugin settings.";
     }
 
     $url = "https://api.openai.com/v1/completions";
@@ -27,10 +35,9 @@ function skilllink_ai_get_career_recommendation($user_input) {
         'headers'    => $headers,
         'body'       => wp_json_encode($data),
         'method'     => 'POST',
-        'timeout'    => 20, // Set a timeout to prevent long delays
+        'timeout'    => 20,
     ]);
 
-    // Check if the request failed
     if (is_wp_error($response)) {
         return "Error: Failed to fetch recommendations. " . $response->get_error_message();
     }
@@ -38,10 +45,10 @@ function skilllink_ai_get_career_recommendation($user_input) {
     $body = wp_remote_retrieve_body($response);
     $result = json_decode($body, true);
 
-    // Check if the API response contains valid data
     if (!isset($result['choices'][0]['text'])) {
         return "Error: No recommendations available or invalid API response.";
     }
 
     return esc_html(trim($result['choices'][0]['text']));
 }
+?>
