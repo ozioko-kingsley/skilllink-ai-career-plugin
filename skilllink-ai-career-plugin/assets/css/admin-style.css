@@ -1,0 +1,46 @@
+#skilllink-career-form {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+#skilllink-career-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#skilllink-career-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#skilllink-career-form button {
+    background: #0073aa;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#skilllink-career-form button:hover {
+    background: #005a87;
+}
+
+#career-results {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e6f7ff;
+    border-left: 4px solid #0073aa;
+    border-radius: 5px;
+}
