@@ -1,0 +1,1 @@
+# skilllink-ai-career-plugin
