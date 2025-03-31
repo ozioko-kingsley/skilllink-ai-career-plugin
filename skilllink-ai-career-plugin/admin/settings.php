@@ -41,7 +41,12 @@ add_action('admin_init', 'skilllink_ai_register_settings');
 function skilllink_ai_api_key_field_callback() {
     $api_key = get_option('skilllink_ai_api_key', '');
     echo '<input type="text" name="skilllink_ai_api_key" value="' . esc_attr($api_key) . '" size="50" />';
+    
+    if (empty($api_key)) {
+        echo '<p style="color: red;">⚠️ API key is missing. Please enter a valid OpenAI API key.</p>';
+    }
 }
+
 
 // Display settings page
 function skilllink_ai_settings_page() { ?>
