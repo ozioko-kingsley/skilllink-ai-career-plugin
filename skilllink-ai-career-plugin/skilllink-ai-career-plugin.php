@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: SkillLink AI Career Plugin
- * Plugin URI: https://github.com/your-github-repo
+ * Plugin URI: https://github.com/ozioko-kingsley/skilllink-ai-career-plugin/tree/main/skilllink-ai-career-plugin
  * Description: AI-powered career recommendation plugin for SkillLink.
  * Version: 1.0
  * Author: Kingsley Ozioko
- * Author URI: https://yourwebsite.com
+ * Author URI: https://github.com/ozioko-kingsley
  * License: GPL2
  */
 
@@ -154,4 +154,13 @@ function skilllink_ai_ajax_career_recommendation() {
 }
 add_action('wp_ajax_get_career_recommendation', 'skilllink_ai_ajax_career_recommendation');
 add_action('wp_ajax_nopriv_get_career_recommendation', 'skilllink_ai_ajax_career_recommendation');
+
+/* Adding the github link to the pllugins list */
+function skilllink_ai_plugin_links($links) {
+    $github_link = '<a href="https://github.com/ozioko-kingsley/skilllink-ai-career-plugin/tree/main/skilllink-ai-career-plugin" target="_blank">GitHub</a>';
+    array_push($links, $github_link);
+    return $links;
+}
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'skilllink_ai_plugin_links');
+
 
